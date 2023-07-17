@@ -2,17 +2,25 @@ import { SectionWrapper, SectionContainer } from "@/components/Major/PremadeElem
 import { styled } from "@mui/material";
 import Post from "@/components/Major/Post";
 
-const RecentPostsSection = () => {
+const RecentPostsSection = (props: any) => {
+    console.log(props.posts.data);
     return(
         <SectionWrapper>
             <SectionContainer>
 
                 <PostsContainer>
-                    <Post />
-                    <Post />
-                    <Post />
-                    <Post />
-                    <Post />
+
+                    {props.posts.data && props.posts.data.length ? (
+                        <>
+                            {props.posts.data.map((post: any, i:number) => (
+                                <Post
+                                    key={i}
+                                    post={post}
+                                />
+                            ))}
+                        </>
+                    ) : (<p>no posts yet</p>)}
+
                 </PostsContainer>
 
             </SectionContainer>

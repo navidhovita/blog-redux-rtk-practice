@@ -1,20 +1,24 @@
 import { styled } from "@mui/material";
 import engie from "../../../../public/images/engie.jpg";
 import { ReadMoreButton } from "../PremadeElements";
+import { PostType } from "@/models/blog";
 
-const Post = () => {
+interface Props{
+    post: PostType
+}
+
+const Post = (props: Props) => {
     return(
         <PostContainer>
             <PostImage src={engie} />
             <PostTitle>
-                Post title
+                {props.post.attributes.title}
             </PostTitle>
             <PostDescription>
-                In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without 
+                {props.post.attributes.desc}
             </PostDescription>
             <PostCategoriesContainer>
-                <PostCategory>scientific</PostCategory>
-                <PostCategory>cultural</PostCategory>
+                <PostCategory>{props.post.attributes.category.data.attributes.title}</PostCategory>
             </PostCategoriesContainer>
             <ReadMoreButton>
                 Read More
